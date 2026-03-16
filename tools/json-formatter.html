@@ -3,106 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JSON Formatter &amp; Validator — ToolPilot.dev</title>
-  <meta name="description" content="Free online JSON formatter, beautifier, minifier, and validator. Instant formatting with error detection. No signup required.">
-  <link rel="canonical" href="https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/json-formatter.html">
-  <meta property="og:title" content="JSON Formatter & Validator — ToolPilot.dev">
-  <meta property="og:description" content="Free online JSON formatter, beautifier, and validator.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css">
+  <title>JSON Formatter & Validator — ToolPilot</title>
+  <meta name="description" content="Free online JSON formatter, validator, and minifier. Pretty-print JSON with syntax highlighting.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/json-formatter.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<nav>
-  <div class="container">
+<nav class="nav">
+  <div class="nav-inner">
     <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
-    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <div class="nav-links">
-      <a href="../index.html#tools">Tools</a>
-      <a href="../index.html#premium">Premium</a>
+      <a href="../index.html">Home</a>
+      <a href="json-formatter.html">JSON</a>
+      <a href="base64.html">Base64</a>
+      <a href="uuid.html">UUID</a>
+      <a href="regex.html">Regex</a>
+      <a href="colors.html">Colors</a>
     </div>
   </div>
 </nav>
 
-<section class="tool-page">
-  <div class="container">
+<div class="tool-container">
+  <div class="tool-header">
     <h1>JSON Formatter &amp; Validator</h1>
-    <p class="tool-desc">Paste JSON to beautify, minify, or validate. Errors shown instantly.</p>
-    <div class="tool-area">
-      <label for="json-input">Input JSON</label>
-      <textarea id="json-input" placeholder='{"example": "paste your JSON here", "count": 42}'></textarea>
-      <div class="tool-actions">
-        <button class="btn btn-primary" onclick="formatJSON()">Beautify</button>
-        <button class="btn btn-outline" onclick="minifyJSON()">Minify</button>
-        <button class="btn btn-outline" onclick="validateJSON()">Validate</button>
-        <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
-        <button class="btn btn-outline" onclick="clearAll()">Clear</button>
-      </div>
-      <label>Output</label>
-      <div id="json-output" class="tool-output">Output will appear here...</div>
-    </div>
+    <p>Paste JSON to format, validate, or minify. Everything runs in your browser.</p>
   </div>
-</section>
 
-<footer><div class="container"><p>&copy; 2026 <a href="../index.html">ToolPilot.dev</a></p></div></footer>
+  <div class="tool-panel">
+    <label for="json-input">Input JSON</label>
+    <textarea id="json-input" rows="12" placeholder='{"name":"ToolPilot","version":1,"features":["format","validate","minify"]}'></textarea>
+  </div>
+
+  <div class="tool-actions">
+    <button class="btn btn-primary" onclick="formatJSON()">Format</button>
+    <button class="btn btn-outline" onclick="minifyJSON()">Minify</button>
+    <button class="btn btn-outline" onclick="validateJSON()">Validate</button>
+    <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
+    <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div class="tool-panel">
+    <label>Output</label>
+    <div class="flex-between mb-1">
+      <span id="status" style="font-size:0.85rem"></span>
+      <select id="indent" style="width:auto;padding:0.4rem 0.75rem" onchange="formatJSON()">
+        <option value="2">2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="\t">Tab</option>
+      </select>
+    </div>
+    <div id="output" class="output-area"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<footer class="footer">
+  <p>&copy; 2026 ToolPilot &middot; <a href="../index.html">Back to all tools</a></p>
+</footer>
 
 <script>
-const inp = () => document.getElementById('json-input');
-const out = () => document.getElementById('json-output');
+function getIndent() {
+  const v = document.getElementById('indent').value;
+  return v === '\\t' ? '\t' : parseInt(v);
+}
 
 function formatJSON() {
+  const input = document.getElementById('json-input').value.trim();
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
+  if (!input) { output.textContent = ''; status.textContent = ''; return; }
   try {
-    const parsed = JSON.parse(inp().value);
-    out().textContent = JSON.stringify(parsed, null, 2);
-    out().className = 'tool-output success';
+    const parsed = JSON.parse(input);
+    output.textContent = JSON.stringify(parsed, null, getIndent());
+    status.innerHTML = '<span style="color:#10B981">&#10003; Valid JSON</span>';
   } catch (e) {
-    out().textContent = 'Error: ' + e.message;
-    out().className = 'tool-output error';
+    output.textContent = '';
+    status.innerHTML = '<span style="color:#ef4444">&#10007; ' + e.message + '</span>';
   }
 }
 
 function minifyJSON() {
+  const input = document.getElementById('json-input').value.trim();
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
+  if (!input) return;
   try {
-    const parsed = JSON.parse(inp().value);
-    out().textContent = JSON.stringify(parsed);
-    out().className = 'tool-output success';
+    output.textContent = JSON.stringify(JSON.parse(input));
+    status.innerHTML = '<span style="color:#10B981">&#10003; Minified</span>';
   } catch (e) {
-    out().textContent = 'Error: ' + e.message;
-    out().className = 'tool-output error';
+    status.innerHTML = '<span style="color:#ef4444">&#10007; ' + e.message + '</span>';
   }
 }
 
 function validateJSON() {
+  const input = document.getElementById('json-input').value.trim();
+  const status = document.getElementById('status');
+  const output = document.getElementById('output');
+  if (!input) return;
   try {
-    JSON.parse(inp().value);
-    out().textContent = 'Valid JSON!';
-    out().className = 'tool-output success';
+    const parsed = JSON.parse(input);
+    const type = Array.isArray(parsed) ? 'Array' : typeof parsed;
+    const keys = typeof parsed === 'object' && parsed !== null ? Object.keys(parsed).length : 0;
+    output.textContent = 'Type: ' + type + '\nKeys/Items: ' + keys + '\nSize: ' + input.length + ' chars';
+    status.innerHTML = '<span style="color:#10B981">&#10003; Valid JSON</span>';
   } catch (e) {
-    out().textContent = 'Invalid JSON: ' + e.message;
-    out().className = 'tool-output error';
+    output.textContent = e.message;
+    status.innerHTML = '<span style="color:#ef4444">&#10007; Invalid JSON</span>';
   }
 }
 
 function copyOutput() {
-  navigator.clipboard.writeText(out().textContent);
-  showCopied();
+  const text = document.getElementById('output').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+  showToast('Copied!');
 }
 
 function clearAll() {
-  inp().value = '';
-  out().textContent = 'Output will appear here...';
-  out().className = 'tool-output';
+  document.getElementById('json-input').value = '';
+  document.getElementById('output').textContent = '';
+  document.getElementById('status').textContent = '';
 }
 
-function showCopied() {
-  const el = document.createElement('div');
-  el.className = 'copied';
-  el.textContent = 'Copied!';
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1600);
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
 }
 </script>
 </body>

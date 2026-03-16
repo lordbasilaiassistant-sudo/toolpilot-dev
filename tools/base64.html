@@ -3,89 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base64 Encode / Decode — ToolPilot.dev</title>
-  <meta name="description" content="Free online Base64 encoder and decoder. Convert text to Base64 and back instantly. Supports UTF-8. No signup required.">
-  <link rel="canonical" href="https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/base64.html">
-  <meta property="og:title" content="Base64 Encode / Decode — ToolPilot.dev">
-  <meta property="og:description" content="Free online Base64 encoder and decoder. Instant conversion.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css">
+  <title>Base64 Encode / Decode — ToolPilot</title>
+  <meta name="description" content="Free online Base64 encoder and decoder. Convert text to Base64 and back. UTF-8 supported.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/base64.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<nav>
-  <div class="container">
+<nav class="nav">
+  <div class="nav-inner">
     <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
-    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <div class="nav-links">
-      <a href="../index.html#tools">Tools</a>
-      <a href="../index.html#premium">Premium</a>
+      <a href="../index.html">Home</a>
+      <a href="json-formatter.html">JSON</a>
+      <a href="base64.html">Base64</a>
+      <a href="uuid.html">UUID</a>
+      <a href="regex.html">Regex</a>
+      <a href="colors.html">Colors</a>
     </div>
   </div>
 </nav>
 
-<section class="tool-page">
-  <div class="container">
+<div class="tool-container">
+  <div class="tool-header">
     <h1>Base64 Encode / Decode</h1>
-    <p class="tool-desc">Convert text to Base64 or decode Base64 back to text. UTF-8 supported.</p>
-    <div class="tool-area">
-      <label for="b64-input">Input</label>
-      <textarea id="b64-input" placeholder="Enter text or Base64 string..."></textarea>
-      <div class="tool-actions">
-        <button class="btn btn-primary" onclick="encode()">Encode</button>
-        <button class="btn btn-outline" onclick="decode()">Decode</button>
-        <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
-        <button class="btn btn-outline" onclick="clearAll()">Clear</button>
-      </div>
-      <label>Output</label>
-      <div id="b64-output" class="tool-output">Output will appear here...</div>
-    </div>
+    <p>Convert text to Base64 or decode Base64 strings. Full UTF-8 support.</p>
   </div>
-</section>
 
-<footer><div class="container"><p>&copy; 2026 <a href="../index.html">ToolPilot.dev</a></p></div></footer>
+  <div class="tool-panel">
+    <label for="b64-input">Input Text</label>
+    <textarea id="b64-input" rows="8" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+  </div>
+
+  <div class="tool-actions">
+    <button class="btn btn-primary" onclick="encode()">Encode &rarr;</button>
+    <button class="btn btn-primary" onclick="decode()">&larr; Decode</button>
+    <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
+    <button class="btn btn-outline" onclick="swap()">Swap</button>
+    <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div class="tool-panel">
+    <label>Output</label>
+    <div id="status" style="font-size:0.85rem;margin-bottom:0.5rem"></div>
+    <div id="output" class="output-area"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<footer class="footer">
+  <p>&copy; 2026 ToolPilot &middot; <a href="../index.html">Back to all tools</a></p>
+</footer>
 
 <script>
-const inp = () => document.getElementById('b64-input');
-const out = () => document.getElementById('b64-output');
-
 function encode() {
+  const input = document.getElementById('b64-input').value;
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
   try {
-    const encoded = btoa(unescape(encodeURIComponent(inp().value)));
-    out().textContent = encoded;
-    out().className = 'tool-output success';
+    const encoded = btoa(unescape(encodeURIComponent(input)));
+    output.textContent = encoded;
+    status.innerHTML = '<span style="color:#10B981">Encoded ' + input.length + ' chars &rarr; ' + encoded.length + ' chars</span>';
   } catch (e) {
-    out().textContent = 'Error: ' + e.message;
-    out().className = 'tool-output error';
+    status.innerHTML = '<span style="color:#ef4444">Error: ' + e.message + '</span>';
   }
 }
 
 function decode() {
+  const input = document.getElementById('b64-input').value.trim();
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
   try {
-    const decoded = decodeURIComponent(escape(atob(inp().value.trim())));
-    out().textContent = decoded;
-    out().className = 'tool-output success';
+    const decoded = decodeURIComponent(escape(atob(input)));
+    output.textContent = decoded;
+    status.innerHTML = '<span style="color:#10B981">Decoded ' + input.length + ' chars &rarr; ' + decoded.length + ' chars</span>';
   } catch (e) {
-    out().textContent = 'Error: Invalid Base64 string';
-    out().className = 'tool-output error';
+    status.innerHTML = '<span style="color:#ef4444">Error: Invalid Base64 string</span>';
   }
 }
 
+function swap() {
+  const input = document.getElementById('b64-input');
+  const output = document.getElementById('output');
+  input.value = output.textContent;
+  output.textContent = '';
+  document.getElementById('status').textContent = '';
+}
+
 function copyOutput() {
-  navigator.clipboard.writeText(out().textContent);
-  const el = document.createElement('div');
-  el.className = 'copied'; el.textContent = 'Copied!';
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1600);
+  const text = document.getElementById('output').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+  const t = document.getElementById('toast');
+  t.textContent = 'Copied!';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
 }
 
 function clearAll() {
-  inp().value = '';
-  out().textContent = 'Output will appear here...';
-  out().className = 'tool-output';
+  document.getElementById('b64-input').value = '';
+  document.getElementById('output').textContent = '';
+  document.getElementById('status').textContent = '';
 }
 </script>
 </body>

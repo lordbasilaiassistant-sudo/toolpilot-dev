@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UUID Generator — ToolPilot</title>
+  <meta name="description" content="Free online UUID v4 generator. Generate unique identifiers in bulk with one click.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/uuid.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="json-formatter.html">JSON</a>
+      <a href="base64.html">Base64</a>
+      <a href="uuid.html">UUID</a>
+      <a href="regex.html">Regex</a>
+      <a href="colors.html">Colors</a>
+    </div>
+  </div>
+</nav>
+
+<div class="tool-container">
+  <div class="tool-header">
+    <h1>UUID Generator</h1>
+    <p>Generate cryptographically random v4 UUIDs. Click any UUID to copy it.</p>
+  </div>
+
+  <div class="tool-panel">
+    <label>Settings</label>
+    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+      <div>
+        <span style="font-size:0.85rem;color:var(--text-muted)">Count:</span>
+        <input type="number" id="count" value="5" min="1" max="100" style="width:80px;display:inline-block">
+      </div>
+      <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;text-transform:none;letter-spacing:0">
+        <input type="checkbox" id="uppercase"> Uppercase
+      </label>
+      <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;text-transform:none;letter-spacing:0">
+        <input type="checkbox" id="noDashes"> No dashes
+      </label>
+    </div>
+  </div>
+
+  <div class="tool-actions">
+    <button class="btn btn-primary" onclick="generate()">Generate UUIDs</button>
+    <button class="btn btn-outline" onclick="copyAll()">Copy All</button>
+    <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div class="tool-panel">
+    <label>Generated UUIDs <span id="status" style="font-weight:400"></span></label>
+    <div id="uuid-list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<footer class="footer">
+  <p>&copy; 2026 ToolPilot &middot; <a href="../index.html">Back to all tools</a></p>
+</footer>
+
+<script>
+function uuidv4() {
+  return crypto.randomUUID();
+}
+
+function generate() {
+  const count = Math.min(100, Math.max(1, parseInt(document.getElementById('count').value) || 1));
+  const upper = document.getElementById('uppercase').checked;
+  const noDash = document.getElementById('noDashes').checked;
+  const list = document.getElementById('uuid-list');
+  list.innerHTML = '';
+
+  for (let i = 0; i < count; i++) {
+    let id = uuidv4();
+    if (noDash) id = id.replace(/-/g, '');
+    if (upper) id = id.toUpperCase();
+
+    const row = document.createElement('div');
+    row.style.cssText = 'padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.9rem;cursor:pointer;border-radius:6px;transition:background 0.15s;margin-bottom:2px';
+    row.textContent = id;
+    row.onclick = () => {
+      navigator.clipboard.writeText(id);
+      showToast('Copied: ' + id.slice(0, 8) + '...');
+    };
+    row.onmouseenter = () => row.style.background = 'var(--accent-glow)';
+    row.onmouseleave = () => row.style.background = 'transparent';
+    list.appendChild(row);
+  }
+  document.getElementById('status').textContent = '(' + count + ' generated)';
+}
+
+function copyAll() {
+  const list = document.getElementById('uuid-list');
+  const ids = Array.from(list.children).map(r => r.textContent).join('\n');
+  if (!ids) return;
+  navigator.clipboard.writeText(ids);
+  showToast('All UUIDs copied!');
+}
+
+function clearAll() {
+  document.getElementById('uuid-list').innerHTML = '';
+  document.getElementById('status').textContent = '';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Auto-generate on load
+generate();
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Tester — ToolPilot</title>
+  <meta name="description" content="Free online regex tester. Test regular expressions with live matching, capture groups, and flags.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/regex.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="json-formatter.html">JSON</a>
+      <a href="base64.html">Base64</a>
+      <a href="uuid.html">UUID</a>
+      <a href="regex.html">Regex</a>
+      <a href="colors.html">Colors</a>
+    </div>
+  </div>
+</nav>
+
+<div class="tool-container">
+  <div class="tool-header">
+    <h1>Regex Tester</h1>
+    <p>Test regular expressions with live highlighting, match info, and capture groups.</p>
+  </div>
+
+  <div class="tool-panel">
+    <label for="regex-input">Regular Expression</label>
+    <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+      <span style="font-family:var(--mono);color:var(--accent);font-size:1.1rem">/</span>
+      <input type="text" id="regex-input" placeholder="\\w+" style="flex:1;min-width:200px" oninput="testRegex()">
+      <span style="font-family:var(--mono);color:var(--accent);font-size:1.1rem">/</span>
+      <input type="text" id="regex-flags" value="g" placeholder="flags" style="width:60px;text-align:center" oninput="testRegex()">
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <label for="test-string">Test String</label>
+    <textarea id="test-string" rows="6" placeholder="Enter text to test against..." oninput="testRegex()">The quick brown fox jumps over the lazy dog. Email: test@example.com Phone: 555-123-4567</textarea>
+  </div>
+
+  <div class="tool-panel">
+    <label>Highlighted Matches</label>
+    <div id="highlight-output" class="output-area" style="white-space:pre-wrap"></div>
+  </div>
+
+  <div class="tool-panel">
+    <label>Match Details</label>
+    <div id="match-info" style="font-size:0.9rem;color:var(--text-muted)">Enter a regex above to see matches.</div>
+    <div id="match-details" class="output-area mt-2" style="min-height:60px;display:none"></div>
+  </div>
+
+  <div class="tool-panel">
+    <label>Common Patterns</label>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem">
+      <button class="btn btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem" onclick="usePattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}','g')">Email</button>
+      <button class="btn btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem" onclick="usePattern('\\d{3}[-.]?\\d{3}[-.]?\\d{4}','g')">Phone</button>
+      <button class="btn btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem" onclick="usePattern('https?://[^\\s]+','g')">URL</button>
+      <button class="btn btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem" onclick="usePattern('\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b','g')">IPv4</button>
+      <button class="btn btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem" onclick="usePattern('#([0-9a-fA-F]{3}){1,2}\\b','g')">Hex Color</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 ToolPilot &middot; <a href="../index.html">Back to all tools</a></p>
+</footer>
+
+<script>
+function usePattern(pattern, flags) {
+  document.getElementById('regex-input').value = pattern;
+  document.getElementById('regex-flags').value = flags;
+  testRegex();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function testRegex() {
+  const pattern = document.getElementById('regex-input').value;
+  const flags = document.getElementById('regex-flags').value;
+  const testStr = document.getElementById('test-string').value;
+  const highlightEl = document.getElementById('highlight-output');
+  const infoEl = document.getElementById('match-info');
+  const detailsEl = document.getElementById('match-details');
+
+  if (!pattern) {
+    highlightEl.innerHTML = escapeHtml(testStr);
+    infoEl.textContent = 'Enter a regex above to see matches.';
+    detailsEl.style.display = 'none';
+    return;
+  }
+
+  let regex;
+  try {
+    regex = new RegExp(pattern, flags);
+  } catch (e) {
+    highlightEl.innerHTML = escapeHtml(testStr);
+    infoEl.innerHTML = '<span style="color:#ef4444">' + escapeHtml(e.message) + '</span>';
+    detailsEl.style.display = 'none';
+    return;
+  }
+
+  // Collect matches
+  const matches = [];
+  if (flags.includes('g')) {
+    let m;
+    const safety = 10000;
+    let i = 0;
+    while ((m = regex.exec(testStr)) !== null && i++ < safety) {
+      matches.push({ index: m.index, length: m[0].length, match: m[0], groups: m.slice(1) });
+      if (m[0].length === 0) regex.lastIndex++;
+    }
+  } else {
+    const m = regex.exec(testStr);
+    if (m) matches.push({ index: m.index, length: m[0].length, match: m[0], groups: m.slice(1) });
+  }
+
+  // Highlight
+  if (matches.length === 0) {
+    highlightEl.innerHTML = escapeHtml(testStr);
+    infoEl.innerHTML = '<span style="color:var(--text-muted)">No matches found.</span>';
+    detailsEl.style.display = 'none';
+    return;
+  }
+
+  let html = '';
+  let lastIdx = 0;
+  for (const m of matches) {
+    html += escapeHtml(testStr.slice(lastIdx, m.index));
+    html += '<span class="match-highlight">' + escapeHtml(m.match) + '</span>';
+    lastIdx = m.index + m.length;
+  }
+  html += escapeHtml(testStr.slice(lastIdx));
+  highlightEl.innerHTML = html;
+
+  infoEl.innerHTML = '<span style="color:#10B981">' + matches.length + ' match' + (matches.length === 1 ? '' : 'es') + ' found</span>';
+
+  // Details
+  let details = '';
+  matches.forEach((m, i) => {
+    details += 'Match ' + (i + 1) + ': "' + m.match + '" at index ' + m.index + '\n';
+    if (m.groups.length) {
+      m.groups.forEach((g, j) => {
+        details += '  Group ' + (j + 1) + ': "' + (g || '') + '"\n';
+      });
+    }
+  });
+  detailsEl.textContent = details;
+  detailsEl.style.display = 'block';
+}
+
+testRegex();
+</script>
+</body>
+</html>

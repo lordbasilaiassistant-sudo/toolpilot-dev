@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://drlor.github.io/toolpilot-dev/</loc>
+    <lastmod>2026-03-15</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/json-formatter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://drlor.github.io/toolpilot-dev/tools/json-formatter.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/base64.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://drlor.github.io/toolpilot-dev/tools/base64.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/word-counter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://drlor.github.io/toolpilot-dev/tools/uuid.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/uuid-generator.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://drlor.github.io/toolpilot-dev/tools/regex.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/regex-tester.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/tools/color-palette.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://drlor.github.io/toolpilot-dev/tools/colors.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

@@ -3,135 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToolPilot.dev — Free Developer &amp; AI Tools</title>
-  <meta name="description" content="Free online developer tools: JSON formatter, Base64 encoder, UUID generator, regex tester, word counter, color palette generator. No signup required.">
-  <meta name="keywords" content="developer tools, JSON formatter, Base64 encoder, UUID generator, regex tester, word counter, color palette, free tools, online tools">
-  <link rel="canonical" href="https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="ToolPilot.dev — Free Developer & AI Tools">
-  <meta property="og:description" content="Free online developer tools. JSON formatter, Base64, UUID, regex, word counter, and more. No signup.">
+  <title>ToolPilot — Free Developer Tools & Premium Resources</title>
+  <meta name="description" content="Free online developer tools: JSON formatter, Base64 encoder, UUID generator, regex tester, color palette generator. Plus premium dev resources.">
+  <meta name="keywords" content="developer tools, JSON formatter, Base64 encoder, UUID generator, regex tester, color palette, free tools">
+  <meta name="author" content="ToolPilot">
+  <meta property="og:title" content="ToolPilot — Free Developer Tools & Premium Resources">
+  <meta property="og:description" content="Free online developer tools plus premium dev bundles. Ship faster.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/">
-  <meta property="og:site_name" content="ToolPilot.dev">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ToolPilot.dev — Free Developer & AI Tools">
-  <meta name="twitter:description" content="Free online developer tools. No signup required.">
-
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a href="index.html" class="nav-logo">
-      <span>&gt;_</span> ToolPilot
-    </a>
-    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <div class="nav-links">
-      <a href="#tools">Tools</a>
+      <a href="#tools">Free Tools</a>
       <a href="#premium">Premium</a>
-      <a href="https://buy.stripe.com/eVqeV6bGobl93CR40z8Vi0M" class="btn btn-primary" style="padding:8px 18px;font-size:0.85rem;">Get Prompt Library</a>
+      <a href="tools/json-formatter.html">JSON</a>
+      <a href="tools/base64.html">Base64</a>
+      <a href="tools/uuid.html">UUID</a>
+      <a href="tools/regex.html">Regex</a>
+      <a href="tools/colors.html">Colors</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="container">
-    <h1>Developer tools that<br><span class="accent">just work.</span></h1>
-    <p>Fast, private, no-signup tools for developers and creators. Everything runs in your browser.</p>
-    <div class="stats">
-      <div class="stat"><strong>6</strong> free tools</div>
-      <div class="stat"><strong>0</strong> accounts needed</div>
-      <div class="stat"><strong>100%</strong> client-side</div>
-    </div>
+<header class="hero">
+  <h1>Developer tools that <span class="accent">just work</span></h1>
+  <p>Free, fast, browser-based utilities. No signup, no tracking, no nonsense. Plus premium bundles for serious builders.</p>
+</header>
+
+<section class="section" id="tools">
+  <h2 class="section-title">Free Tools</h2>
+  <p class="section-sub">All tools run 100% in your browser. Nothing leaves your machine.</p>
+  <div class="grid">
+
+    <a href="tools/json-formatter.html" class="card" style="text-decoration:none;color:inherit">
+      <div class="card-icon">{ }</div>
+      <h3>JSON Formatter &amp; Validator</h3>
+      <p>Pretty-print, minify, and validate JSON with syntax highlighting and error pinpointing.</p>
+      <div><span class="card-badge badge-free">Free</span></div>
+    </a>
+
+    <a href="tools/base64.html" class="card" style="text-decoration:none;color:inherit">
+      <div class="card-icon">B64</div>
+      <h3>Base64 Encode / Decode</h3>
+      <p>Encode text to Base64 or decode Base64 back to text. Supports UTF-8.</p>
+      <div><span class="card-badge badge-free">Free</span></div>
+    </a>
+
+    <a href="tools/uuid.html" class="card" style="text-decoration:none;color:inherit">
+      <div class="card-icon">#id</div>
+      <h3>UUID Generator</h3>
+      <p>Generate v4 UUIDs in bulk. Copy single or batch with one click.</p>
+      <div><span class="card-badge badge-free">Free</span></div>
+    </a>
+
+    <a href="tools/regex.html" class="card" style="text-decoration:none;color:inherit">
+      <div class="card-icon">.*</div>
+      <h3>Regex Tester</h3>
+      <p>Test regular expressions with live matching, capture groups, and flag support.</p>
+      <div><span class="card-badge badge-free">Free</span></div>
+    </a>
+
+    <a href="tools/colors.html" class="card" style="text-decoration:none;color:inherit">
+      <div class="card-icon" style="background:linear-gradient(135deg,#f472b6,#818cf8,#34d399)">&#9632;</div>
+      <h3>Color Palette Generator</h3>
+      <p>Generate harmonious color palettes. Copy hex, RGB, or HSL values instantly.</p>
+      <div><span class="card-badge badge-free">Free</span></div>
+    </a>
+
   </div>
 </section>
 
-<section class="tools-section" id="tools">
-  <div class="container">
-    <h2 class="section-title">Free Tools</h2>
-    <p class="section-subtitle">No signup, no tracking, no BS. Just tools.</p>
-    <div class="tool-grid">
+<section class="section" id="premium">
+  <h2 class="section-title">Premium Resources</h2>
+  <p class="section-sub">Curated bundles for developers who ship. Instant download after purchase.</p>
+  <div class="grid">
 
-      <a href="tools/json-formatter.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon">{}</div>
-        <span class="badge badge-free">Free</span>
-        <h3>JSON Formatter &amp; Validator</h3>
-        <p>Beautify, minify, and validate JSON with syntax highlighting and error detection.</p>
-      </a>
-
-      <a href="tools/base64.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon">B64</div>
-        <span class="badge badge-free">Free</span>
-        <h3>Base64 Encode / Decode</h3>
-        <p>Convert text to Base64 and back instantly. Supports UTF-8.</p>
-      </a>
-
-      <a href="tools/word-counter.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon">Wc</div>
-        <span class="badge badge-free">Free</span>
-        <h3>Word &amp; Character Counter</h3>
-        <p>Count words, characters, sentences, paragraphs, and estimated reading time.</p>
-      </a>
-
-      <a href="tools/uuid-generator.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon">ID</div>
-        <span class="badge badge-free">Free</span>
-        <h3>UUID Generator</h3>
-        <p>Generate v4 UUIDs in bulk. Copy individual or all at once.</p>
-      </a>
-
-      <a href="tools/regex-tester.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon">.*</div>
-        <span class="badge badge-free">Free</span>
-        <h3>Regex Tester</h3>
-        <p>Test regular expressions with real-time match highlighting and capture groups.</p>
-      </a>
-
-      <a href="tools/color-palette.html" class="tool-card" style="color:inherit;text-decoration:none;">
-        <div class="tool-icon" style="background:linear-gradient(135deg,#6c5ce7,#4ecdc4);"></div>
-        <span class="badge badge-free">Free</span>
-        <h3>Color Palette Generator</h3>
-        <p>Generate harmonious color palettes. Copy hex codes with one click.</p>
-      </a>
-
+    <div class="card premium-card">
+      <div class="card-icon" style="background:rgba(245,158,11,0.15)">&#128640;</div>
+      <span class="card-badge badge-premium mb-1">Premium</span>
+      <h3>Premium Developer Toolkit</h3>
+      <p>100+ curated developer tools, cheat sheets, and reference cards. PDF + JSON bundle.</p>
+      <div class="price-tag">$9.99</div>
+      <a href="https://buy.stripe.com/00w4gs4dWdth6P3dB98Vi0J" target="_blank" rel="noopener" class="btn btn-buy">Buy Now &rarr;</a>
     </div>
+
+    <div class="card premium-card">
+      <div class="card-icon" style="background:rgba(245,158,11,0.15)">&#129302;</div>
+      <span class="card-badge badge-premium mb-1">Premium</span>
+      <h3>AI Prompt Engineering Guide</h3>
+      <p>50 battle-tested prompt templates for ChatGPT, Claude, and Gemini. Instant download.</p>
+      <div class="price-tag">$4.99</div>
+      <a href="https://buy.stripe.com/8x214g9yg74TehveFd8Vi0K" target="_blank" rel="noopener" class="btn btn-buy">Buy Now &rarr;</a>
+    </div>
+
+    <div class="card premium-card">
+      <div class="card-icon" style="background:rgba(245,158,11,0.15)">&#9939;</div>
+      <span class="card-badge badge-premium mb-1">Premium</span>
+      <h3>Crypto Developer Cheat Sheet</h3>
+      <p>Solidity patterns, gas optimization tips, EVM reference. PDF download.</p>
+      <div class="price-tag">$2.99</div>
+      <a href="https://buy.stripe.com/5kQ8wIh0I3SHa1f7cL8Vi0L" target="_blank" rel="noopener" class="btn btn-buy">Buy Now &rarr;</a>
+    </div>
+
   </div>
 </section>
 
-<section class="premium-section" id="premium">
-  <div class="container">
-    <div class="premium-card">
-      <span class="badge badge-premium" style="margin-bottom:16px;">Premium</span>
-      <h2>AI Prompt Library</h2>
-      <p style="color:var(--text-secondary);max-width:420px;margin:0 auto;">200+ curated, battle-tested prompt templates for ChatGPT, Claude, Midjourney, Stable Diffusion, and more.</p>
-      <div class="price">$4.99</div>
-      <p class="price-note">One-time purchase &middot; Instant download</p>
-      <ul>
-        <li>200+ prompts across 12 categories</li>
-        <li>ChatGPT, Claude, Midjourney, DALL-E, Stable Diffusion</li>
-        <li>Coding, writing, marketing, analysis templates</li>
-        <li>Downloadable PDF + JSON formats</li>
-        <li>Free updates for life</li>
-      </ul>
-      <a href="https://buy.stripe.com/eVqeV6bGobl93CR40z8Vi0M" class="btn btn-primary" style="padding:14px 36px;font-size:1.05rem;">
-        Buy Now &mdash; $4.99
-      </a>
-      <p style="margin-top:12px;font-size:0.8rem;color:var(--text-secondary);">Secure payment via Stripe</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2026 ToolPilot.dev &middot; Built by <a href="https://github.com/drlor" target="_blank">drlor</a></p>
-  </div>
+<footer class="footer">
+  <p>&copy; 2026 ToolPilot. Built for developers, by developers.</p>
 </footer>
 
 </body>
