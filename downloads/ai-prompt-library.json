@@ -1,0 +1,277 @@
+{
+  "name": "AI Prompt Library - ToolPilot",
+  "version": "1.0",
+  "total_prompts": 48,
+  "categories": [
+    {
+      "name": "Coding & Development",
+      "prompts": [
+        {
+          "title": "Code Review Expert",
+          "model": "ChatGPT / Claude",
+          "prompt": "Act as a senior software engineer performing a code review. Analyze the following code for: 1) bugs and edge cases, 2) performance issues, 3) security vulnerabilities, 4) readability improvements, 5) adherence to best practices. Provide specific line-by-line feedback with suggested fixes.\n\nCode:\n{paste code here}"
+        },
+        {
+          "title": "Architecture Decision Record",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create an Architecture Decision Record (ADR) for the following technical decision. Include: Context (why this decision is needed), Decision (what was decided), Consequences (trade-offs), Alternatives Considered, and Status.\n\nDecision: {describe the technical decision}"
+        },
+        {
+          "title": "Debug Detective",
+          "model": "ChatGPT / Claude",
+          "prompt": "I'm encountering a bug. Help me debug it systematically:\n\nExpected behavior: {what should happen}\nActual behavior: {what actually happens}\nSteps to reproduce: {steps}\nEnvironment: {language, framework, OS}\nError message: {paste error}\n\nWalk me through the most likely causes from most to least probable, and suggest diagnostic steps for each."
+        },
+        {
+          "title": "API Design Review",
+          "model": "ChatGPT / Claude",
+          "prompt": "Review this API design for RESTful best practices, consistency, security, and developer experience. Suggest improvements for naming conventions, error handling, pagination, versioning, and authentication.\n\nAPI spec:\n{paste your API endpoints/schema}"
+        },
+        {
+          "title": "Regex Builder",
+          "model": "ChatGPT / Claude",
+          "prompt": "Build a regex pattern that matches: {describe what you want to match}. Provide:\n1. The regex pattern\n2. Explanation of each part\n3. Test cases that should match\n4. Test cases that should NOT match\n5. Any edge cases to be aware of\n\nTarget language: {JavaScript/Python/etc}"
+        },
+        {
+          "title": "Database Schema Designer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Design a normalized database schema for: {describe the application}. Include:\n1. Entity-Relationship diagram (text format)\n2. Table definitions with columns, types, constraints\n3. Indexes for common queries\n4. Explanation of normalization decisions\n5. Sample queries for common operations"
+        },
+        {
+          "title": "Test Case Generator",
+          "model": "ChatGPT / Claude",
+          "prompt": "Generate comprehensive test cases for the following function/feature:\n\n{paste function or describe feature}\n\nInclude: unit tests, edge cases, boundary values, error cases, integration test scenarios. Use {testing framework} syntax. Aim for >90% coverage."
+        },
+        {
+          "title": "Refactoring Guide",
+          "model": "ChatGPT / Claude",
+          "prompt": "Refactor this code to improve readability, maintainability, and performance while preserving exact behavior. Apply SOLID principles where applicable. Show the refactored version with comments explaining each change.\n\nCode:\n{paste code}"
+        }
+      ]
+    },
+    {
+      "name": "Writing & Content",
+      "prompts": [
+        {
+          "title": "Blog Post Outline",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create a detailed blog post outline about: {topic}. Target audience: {audience}. Include:\n1. SEO-optimized title options (3)\n2. Meta description\n3. H2/H3 heading structure\n4. Key points for each section\n5. Internal linking opportunities\n6. Call-to-action suggestions\n\nTone: {professional/casual/technical}"
+        },
+        {
+          "title": "Email Sequence Writer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Write a {number}-email sequence for: {purpose, e.g., onboarding, sales, re-engagement}.\n\nProduct/Service: {describe}\nTarget audience: {describe}\nGoal: {desired action}\n\nFor each email, provide: subject line, preview text, body copy, and CTA. Include send timing recommendations."
+        },
+        {
+          "title": "Technical Documentation",
+          "model": "ChatGPT / Claude",
+          "prompt": "Write clear technical documentation for:\n\n{paste code/API/feature description}\n\nInclude: Overview, Prerequisites, Installation/Setup, Usage Examples (beginner and advanced), API Reference (if applicable), Troubleshooting, and FAQ. Write for developers who are new to this tool."
+        },
+        {
+          "title": "Social Media Thread",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create a compelling Twitter/X thread about: {topic}. Requirements:\n- 8-12 tweets\n- Hook tweet that stops scrolling\n- Mix of insights, examples, and actionable tips\n- End with a CTA\n- Include suggested media/visual descriptions\n- Tone: {authoritative/conversational/provocative}"
+        },
+        {
+          "title": "Product Description Writer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Write a compelling product description for:\n\nProduct: {name}\nFeatures: {list features}\nTarget customer: {describe}\nPrice point: {price}\n\nProvide: headline, subheadline, 3 benefit-focused paragraphs, feature bullet points, social proof section template, and CTA. Optimize for conversion."
+        },
+        {
+          "title": "Copywriting Formula Pack",
+          "model": "ChatGPT / Claude",
+          "prompt": "Write the following for my product/service: {describe}\n\n1. AIDA (Attention, Interest, Desire, Action) copy\n2. PAS (Problem, Agitate, Solution) copy\n3. BAB (Before, After, Bridge) copy\n4. 4Ps (Promise, Picture, Proof, Push) copy\n\nKeep each under 150 words. Target audience: {describe}"
+        },
+        {
+          "title": "Content Repurposer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Take this content and repurpose it into multiple formats:\n\nOriginal content:\n{paste content}\n\nCreate:\n1. Twitter thread (8 tweets)\n2. LinkedIn post\n3. Instagram caption\n4. YouTube video script outline\n5. Newsletter snippet\n6. Reddit post\n\nMaintain the core message while adapting tone for each platform."
+        },
+        {
+          "title": "Headline Generator",
+          "model": "ChatGPT / Claude",
+          "prompt": "Generate 20 headline options for: {topic/product}. Include:\n- 5 curiosity-driven headlines\n- 5 benefit-driven headlines\n- 5 urgency-driven headlines\n- 5 contrarian/unexpected headlines\n\nTarget audience: {describe}\nGoal: {clicks/signups/sales}"
+        }
+      ]
+    },
+    {
+      "name": "AI Image Generation",
+      "prompts": [
+        {
+          "title": "Photorealistic Product Shot",
+          "model": "Midjourney / DALL-E",
+          "prompt": "{product} on a {surface material} surface, studio lighting, soft shadows, shallow depth of field, 8K, commercial photography, clean background, product photography, Canon EOS R5 --ar 4:5 --v 6"
+        },
+        {
+          "title": "Character Design",
+          "model": "Midjourney",
+          "prompt": "Character design sheet, {character description}, multiple poses and expressions, full body front and side view, {art style} style, detailed outfit design, white background, concept art --ar 16:9 --v 6"
+        },
+        {
+          "title": "Logo Design",
+          "model": "Midjourney / DALL-E",
+          "prompt": "Minimalist logo design for {brand name}, {industry}, clean vector style, {color scheme}, modern, professional, scalable, white background, graphic design --ar 1:1 --v 6"
+        },
+        {
+          "title": "Social Media Banner",
+          "model": "Midjourney / DALL-E",
+          "prompt": "{theme/mood} banner image, {describe scene}, vibrant colors, modern design, abstract geometric elements, professional, social media header, clean composition --ar 3:1 --v 6"
+        },
+        {
+          "title": "UI/UX Mockup",
+          "model": "Midjourney",
+          "prompt": "UI design mockup for {app type}, {dark/light} theme, modern interface, clean layout, {color scheme}, glassmorphism elements, mobile app screen, Dribbble style --ar 9:16 --v 6"
+        },
+        {
+          "title": "Book Cover",
+          "model": "Midjourney / DALL-E",
+          "prompt": "Book cover design for '{title}', {genre} genre, {mood/atmosphere}, dramatic lighting, {style: painted/photographic/illustrated}, compelling composition, professional typography space --ar 2:3 --v 6"
+        },
+        {
+          "title": "Isometric Illustration",
+          "model": "Midjourney",
+          "prompt": "Isometric illustration of {scene}, colorful, detailed, {style: flat/3D/pixel}, clean edges, white background, infographic style, modern design --ar 1:1 --v 6"
+        },
+        {
+          "title": "Texture & Pattern",
+          "model": "Midjourney / Stable Diffusion",
+          "prompt": "Seamless tileable pattern, {describe pattern: geometric/organic/abstract}, {color palette}, high resolution, repeating pattern, surface design, textile design --tile --ar 1:1 --v 6"
+        }
+      ]
+    },
+    {
+      "name": "Business & Marketing",
+      "prompts": [
+        {
+          "title": "Competitor Analysis",
+          "model": "ChatGPT / Claude",
+          "prompt": "Perform a competitor analysis for my business:\n\nMy business: {describe}\nCompetitors: {list 3-5}\n\nAnalyze for each: value proposition, pricing strategy, target audience, strengths, weaknesses, marketing channels, and unique differentiators. Create a comparison matrix and identify gaps I can exploit."
+        },
+        {
+          "title": "Business Model Canvas",
+          "model": "ChatGPT / Claude",
+          "prompt": "Fill out a complete Business Model Canvas for:\n\nBusiness idea: {describe}\n\nProvide detailed entries for all 9 blocks: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams. Include specific examples, not generic statements."
+        },
+        {
+          "title": "Landing Page Copy",
+          "model": "ChatGPT / Claude",
+          "prompt": "Write complete landing page copy for:\n\nProduct: {name}\nTarget user: {describe}\nMain benefit: {describe}\nPrice: {price}\n\nSections needed: Hero (headline + subhead + CTA), Problem statement, Solution overview, 3 key features with benefits, Social proof section, FAQ (5 questions), Final CTA. Optimize for conversion."
+        },
+        {
+          "title": "Pricing Strategy",
+          "model": "ChatGPT / Claude",
+          "prompt": "Help me develop a pricing strategy for:\n\nProduct/Service: {describe}\nTarget market: {describe}\nCost to deliver: {describe}\nCompetitor pricing: {list if known}\n\nAnalyze: cost-plus pricing, value-based pricing, competitive pricing, and freemium models. Recommend the best approach with specific price points and tier structures."
+        },
+        {
+          "title": "Customer Persona Builder",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create 3 detailed customer personas for: {product/service}.\n\nFor each persona include: Name, Age, Job title, Income, Goals, Frustrations, Preferred channels, Buying triggers, Objections, and a day-in-the-life narrative. Make them specific and actionable for marketing decisions."
+        },
+        {
+          "title": "SEO Content Strategy",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create a 3-month SEO content strategy for: {website/business}.\n\nNiche: {describe}\nCurrent authority: {low/medium/high}\n\nProvide: 12 pillar content topics, 36 supporting articles, keyword clusters for each, internal linking strategy, content calendar, and estimated traffic potential. Prioritize by difficulty and impact."
+        },
+        {
+          "title": "Pitch Deck Outline",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create a compelling pitch deck outline for:\n\nStartup: {name}\nProblem: {describe}\nSolution: {describe}\nStage: {pre-seed/seed/series A}\n\n12 slides: Title, Problem, Solution, Market Size, Business Model, Traction, Competition, Team, Go-to-Market, Financials, Ask, Vision. Include talking points and data suggestions for each slide."
+        },
+        {
+          "title": "A/B Test Hypothesis Generator",
+          "model": "ChatGPT / Claude",
+          "prompt": "Generate 10 A/B test hypotheses for: {website/product page URL or description}.\n\nFor each test include:\n1. Hypothesis statement (If we change X, then Y will happen, because Z)\n2. Primary metric to track\n3. Expected impact (low/medium/high)\n4. Implementation difficulty\n5. Priority score\n\nFocus on highest-impact, lowest-effort tests first."
+        }
+      ]
+    },
+    {
+      "name": "Data & Analysis",
+      "prompts": [
+        {
+          "title": "Data Cleaning Advisor",
+          "model": "ChatGPT / Claude",
+          "prompt": "I have a dataset with these columns: {list columns with sample values}. Help me:\n1. Identify potential data quality issues\n2. Suggest cleaning steps for each column\n3. Write {Python/SQL} code for the cleaning pipeline\n4. Flag potential biases or gaps\n5. Recommend validation checks"
+        },
+        {
+          "title": "SQL Query Optimizer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Optimize this SQL query for performance:\n\n{paste SQL query}\n\nTable sizes: {approximate row counts}\nDatabase: {PostgreSQL/MySQL/etc}\n\nAnalyze: execution plan issues, missing indexes, join optimization, subquery elimination, and rewrite suggestions. Provide the optimized query with explanations."
+        },
+        {
+          "title": "Dashboard Design",
+          "model": "ChatGPT / Claude",
+          "prompt": "Design a KPI dashboard for: {business/department}.\n\nGoals: {list goals}\nData sources: {list}\n\nProvide: Top 8 metrics with calculations, visualization type for each (chart, gauge, number), layout wireframe (text), drill-down hierarchy, alert thresholds, and refresh frequency recommendations."
+        },
+        {
+          "title": "Excel/Sheets Formula Expert",
+          "model": "ChatGPT / Claude",
+          "prompt": "I need a spreadsheet formula to: {describe what you want to calculate}.\n\nMy data layout: {describe columns/rows}\nSample data: {provide examples}\nPlatform: {Excel/Google Sheets}\n\nProvide the formula, explain each part, show example output, and suggest any helper columns if needed."
+        },
+        {
+          "title": "Statistical Analysis Plan",
+          "model": "ChatGPT / Claude",
+          "prompt": "Help me analyze this data:\n\nResearch question: {describe}\nVariables: {list with types}\nSample size: {n}\nData collection method: {describe}\n\nRecommend: appropriate statistical tests, assumptions to check, effect size calculations, visualization approaches, and how to report results. Provide {Python/R} code."
+        },
+        {
+          "title": "Data Visualization Advisor",
+          "model": "ChatGPT / Claude",
+          "prompt": "Recommend the best visualization for this data:\n\nData description: {describe dataset}\nAudience: {technical/executive/general}\nKey message: {what insight to convey}\nTool: {matplotlib/D3/Tableau/etc}\n\nProvide: chart type recommendation with rationale, color scheme, labeling guidelines, and code to generate it."
+        },
+        {
+          "title": "ETL Pipeline Designer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Design an ETL pipeline for:\n\nSource: {describe data sources}\nDestination: {describe target}\nFrequency: {real-time/hourly/daily}\nVolume: {approximate}\n\nProvide: architecture diagram (text), transformation logic, error handling strategy, monitoring approach, and code scaffolding in {Python/SQL}."
+        },
+        {
+          "title": "Anomaly Detection Setup",
+          "model": "ChatGPT / Claude",
+          "prompt": "Help me set up anomaly detection for:\n\nMetric: {describe}\nNormal range: {if known}\nData frequency: {per minute/hour/day}\nHistory available: {timeframe}\n\nRecommend: detection method (statistical/ML), threshold calibration, alerting rules, false positive mitigation, and implementation code in Python."
+        }
+      ]
+    },
+    {
+      "name": "Learning & Research",
+      "prompts": [
+        {
+          "title": "Concept Explainer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Explain {concept} at three levels:\n1. ELI5 (simple analogy)\n2. Intermediate (for someone with basic {field} knowledge)\n3. Expert (technical depth with nuances)\n\nFor each level, include a practical example. Then provide 5 questions I should be able to answer if I truly understand this concept."
+        },
+        {
+          "title": "Learning Roadmap",
+          "model": "ChatGPT / Claude",
+          "prompt": "Create a 3-month learning roadmap for: {skill/topic}.\n\nCurrent level: {beginner/intermediate}\nAvailable time: {hours per week}\nLearning style: {reading/video/hands-on}\n\nProvide: weekly goals, specific resources (free), practice projects for each phase, milestones to track progress, and common pitfalls to avoid."
+        },
+        {
+          "title": "Research Paper Summarizer",
+          "model": "ChatGPT / Claude",
+          "prompt": "Analyze this research paper/article:\n\n{paste abstract or key sections}\n\nProvide:\n1. One-sentence summary\n2. Key findings (bullet points)\n3. Methodology critique\n4. Practical implications\n5. Limitations acknowledged\n6. How this connects to: {your field/interest}\n7. 3 follow-up questions for deeper investigation"
+        },
+        {
+          "title": "Socratic Learning Partner",
+          "model": "ChatGPT / Claude",
+          "prompt": "I want to deeply understand: {topic}. Instead of explaining it to me, use the Socratic method. Ask me probing questions one at a time that will guide me to discover the key principles myself. Start with foundational questions and progressively increase complexity. If I get stuck, give a hint rather than the answer. Begin with the first question."
+        },
+        {
+          "title": "Mental Model Mapper",
+          "model": "ChatGPT / Claude",
+          "prompt": "Apply these mental models to analyze: {situation/decision}:\n1. First Principles Thinking\n2. Second-Order Effects\n3. Inversion\n4. Circle of Competence\n5. Opportunity Cost\n\nFor each model, provide the analysis and one actionable insight. Then synthesize all perspectives into a recommended course of action."
+        },
+        {
+          "title": "Book Summary Generator",
+          "model": "ChatGPT / Claude",
+          "prompt": "Provide a comprehensive summary of '{book title}' by {author}:\n1. Core thesis in one sentence\n2. Top 10 key ideas with explanations\n3. Most important quotes\n4. Practical action items I can implement today\n5. Criticisms and counterarguments\n6. Related books to read next\n7. Who should (and shouldn't) read this book"
+        },
+        {
+          "title": "Interview Prep Coach",
+          "model": "ChatGPT / Claude",
+          "prompt": "Help me prepare for a {job title} interview at {company type}.\n\nMy background: {brief summary}\nInterview type: {behavioral/technical/system design}\n\nProvide:\n1. 10 likely questions with STAR-format answer frameworks\n2. 5 questions I should ask them\n3. Common red flags to avoid\n4. 3 ways to stand out\n5. A 30-second elevator pitch draft"
+        },
+        {
+          "title": "Decision Framework",
+          "model": "ChatGPT / Claude",
+          "prompt": "Help me make this decision: {describe decision}.\n\nOptions: {list options}\nConstraints: {time, budget, etc.}\nValues: {what matters most}\n\nAnalyze using:\n1. Weighted pros/cons matrix\n2. 10/10/10 rule (10 min, 10 months, 10 years)\n3. Regret minimization\n4. Expected value calculation\n5. Pre-mortem analysis for top choice\n\nGive a clear recommendation."
+        }
+      ]
+    }
+  ]
+}

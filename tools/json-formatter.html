@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter &amp; Validator — ToolPilot.dev</title>
+  <meta name="description" content="Free online JSON formatter, beautifier, minifier, and validator. Instant formatting with error detection. No signup required.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/json-formatter.html">
+  <meta property="og:title" content="JSON Formatter & Validator — ToolPilot.dev">
+  <meta property="og:description" content="Free online JSON formatter, beautifier, and validator.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#tools">Tools</a>
+      <a href="../index.html#premium">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<section class="tool-page">
+  <div class="container">
+    <h1>JSON Formatter &amp; Validator</h1>
+    <p class="tool-desc">Paste JSON to beautify, minify, or validate. Errors shown instantly.</p>
+    <div class="tool-area">
+      <label for="json-input">Input JSON</label>
+      <textarea id="json-input" placeholder='{"example": "paste your JSON here", "count": 42}'></textarea>
+      <div class="tool-actions">
+        <button class="btn btn-primary" onclick="formatJSON()">Beautify</button>
+        <button class="btn btn-outline" onclick="minifyJSON()">Minify</button>
+        <button class="btn btn-outline" onclick="validateJSON()">Validate</button>
+        <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
+        <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+      </div>
+      <label>Output</label>
+      <div id="json-output" class="tool-output">Output will appear here...</div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><p>&copy; 2026 <a href="../index.html">ToolPilot.dev</a></p></div></footer>
+
+<script>
+const inp = () => document.getElementById('json-input');
+const out = () => document.getElementById('json-output');
+
+function formatJSON() {
+  try {
+    const parsed = JSON.parse(inp().value);
+    out().textContent = JSON.stringify(parsed, null, 2);
+    out().className = 'tool-output success';
+  } catch (e) {
+    out().textContent = 'Error: ' + e.message;
+    out().className = 'tool-output error';
+  }
+}
+
+function minifyJSON() {
+  try {
+    const parsed = JSON.parse(inp().value);
+    out().textContent = JSON.stringify(parsed);
+    out().className = 'tool-output success';
+  } catch (e) {
+    out().textContent = 'Error: ' + e.message;
+    out().className = 'tool-output error';
+  }
+}
+
+function validateJSON() {
+  try {
+    JSON.parse(inp().value);
+    out().textContent = 'Valid JSON!';
+    out().className = 'tool-output success';
+  } catch (e) {
+    out().textContent = 'Invalid JSON: ' + e.message;
+    out().className = 'tool-output error';
+  }
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(out().textContent);
+  showCopied();
+}
+
+function clearAll() {
+  inp().value = '';
+  out().textContent = 'Output will appear here...';
+  out().className = 'tool-output';
+}
+
+function showCopied() {
+  const el = document.createElement('div');
+  el.className = 'copied';
+  el.textContent = 'Copied!';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
+}
+</script>
+</body>
+</html>

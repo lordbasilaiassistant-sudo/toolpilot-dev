@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 Encode / Decode — ToolPilot.dev</title>
+  <meta name="description" content="Free online Base64 encoder and decoder. Convert text to Base64 and back instantly. Supports UTF-8. No signup required.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/base64.html">
+  <meta property="og:title" content="Base64 Encode / Decode — ToolPilot.dev">
+  <meta property="og:description" content="Free online Base64 encoder and decoder. Instant conversion.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#tools">Tools</a>
+      <a href="../index.html#premium">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<section class="tool-page">
+  <div class="container">
+    <h1>Base64 Encode / Decode</h1>
+    <p class="tool-desc">Convert text to Base64 or decode Base64 back to text. UTF-8 supported.</p>
+    <div class="tool-area">
+      <label for="b64-input">Input</label>
+      <textarea id="b64-input" placeholder="Enter text or Base64 string..."></textarea>
+      <div class="tool-actions">
+        <button class="btn btn-primary" onclick="encode()">Encode</button>
+        <button class="btn btn-outline" onclick="decode()">Decode</button>
+        <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
+        <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+      </div>
+      <label>Output</label>
+      <div id="b64-output" class="tool-output">Output will appear here...</div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><p>&copy; 2026 <a href="../index.html">ToolPilot.dev</a></p></div></footer>
+
+<script>
+const inp = () => document.getElementById('b64-input');
+const out = () => document.getElementById('b64-output');
+
+function encode() {
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(inp().value)));
+    out().textContent = encoded;
+    out().className = 'tool-output success';
+  } catch (e) {
+    out().textContent = 'Error: ' + e.message;
+    out().className = 'tool-output error';
+  }
+}
+
+function decode() {
+  try {
+    const decoded = decodeURIComponent(escape(atob(inp().value.trim())));
+    out().textContent = decoded;
+    out().className = 'tool-output success';
+  } catch (e) {
+    out().textContent = 'Error: Invalid Base64 string';
+    out().className = 'tool-output error';
+  }
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(out().textContent);
+  const el = document.createElement('div');
+  el.className = 'copied'; el.textContent = 'Copied!';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
+}
+
+function clearAll() {
+  inp().value = '';
+  out().textContent = 'Output will appear here...';
+  out().className = 'tool-output';
+}
+</script>
+</body>
+</html>

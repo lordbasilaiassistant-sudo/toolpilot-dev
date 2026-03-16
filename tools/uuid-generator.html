@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UUID Generator — ToolPilot.dev</title>
+  <meta name="description" content="Free online UUID v4 generator. Generate one or bulk UUIDs instantly. Copy with one click. No signup required.">
+  <link rel="canonical" href="https://drlor.github.io/toolpilot-dev/tools/uuid-generator.html">
+  <meta property="og:title" content="UUID Generator — ToolPilot.dev">
+  <meta property="og:description" content="Free UUID v4 generator. Generate in bulk, copy instantly.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-logo"><span>&gt;_</span> ToolPilot</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#tools">Tools</a>
+      <a href="../index.html#premium">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<section class="tool-page">
+  <div class="container">
+    <h1>UUID Generator</h1>
+    <p class="tool-desc">Generate RFC 4122 v4 UUIDs. Click any UUID to copy it.</p>
+    <div class="tool-area">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <label style="margin:0;">Count:</label>
+        <input type="number" id="uuid-count" value="5" min="1" max="500" style="width:80px;">
+        <label style="margin:0;">
+          <input type="checkbox" id="uuid-upper"> Uppercase
+        </label>
+        <label style="margin:0;">
+          <input type="checkbox" id="uuid-braces"> Braces {}
+        </label>
+      </div>
+      <div class="tool-actions">
+        <button class="btn btn-primary" onclick="generate()">Generate</button>
+        <button class="btn btn-outline" onclick="copyAll()">Copy All</button>
+      </div>
+      <div id="uuid-output" class="tool-output" style="cursor:pointer;">Click "Generate" to create UUIDs...</div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><p>&copy; 2026 <a href="../index.html">ToolPilot.dev</a></p></div></footer>
+
+<script>
+function uuidv4() {
+  return crypto.randomUUID();
+}
+
+function generate() {
+  const count = Math.min(500, Math.max(1, parseInt(document.getElementById('uuid-count').value) || 5));
+  const upper = document.getElementById('uuid-upper').checked;
+  const braces = document.getElementById('uuid-braces').checked;
+  const uuids = [];
+  for (let i = 0; i < count; i++) {
+    let u = uuidv4();
+    if (upper) u = u.toUpperCase();
+    if (braces) u = '{' + u + '}';
+    uuids.push(u);
+  }
+  const out = document.getElementById('uuid-output');
+  out.innerHTML = uuids.map(u => `<div style="padding:4px 0;border-bottom:1px solid var(--border);cursor:pointer;" onclick="copyOne(this)" title="Click to copy">${u}</div>`).join('');
+  out.className = 'tool-output success';
+}
+
+function copyOne(el) {
+  navigator.clipboard.writeText(el.textContent);
+  const orig = el.style.color;
+  el.style.color = 'var(--green)';
+  setTimeout(() => el.style.color = orig, 600);
+  showCopied();
+}
+
+function copyAll() {
+  const out = document.getElementById('uuid-output');
+  const text = Array.from(out.querySelectorAll('div')).map(d => d.textContent).join('\n');
+  if (text) {
+    navigator.clipboard.writeText(text);
+    showCopied();
+  }
+}
+
+function showCopied() {
+  const el = document.createElement('div');
+  el.className = 'copied'; el.textContent = 'Copied!';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
+}
+
+generate();
+</script>
+</body>
+</html>
