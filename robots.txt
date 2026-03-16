@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://drlor.github.io/toolpilot-dev/sitemap.xml
+Sitemap: https://lordbasilaiassistant-sudo.github.io/toolpilot-dev/sitemap.xml
 
 Disallow: /downloads/
 Disallow: /thank-you.html
